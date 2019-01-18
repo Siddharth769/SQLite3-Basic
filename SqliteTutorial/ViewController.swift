@@ -23,6 +23,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+
+        createDb()
+        readValues()
+    }
+
+    @IBAction func Save(_ sender: Any) {
+        createTable()
+        readValues()
+        clearTextFields()
+        print("Anime saved successfully")
+        
+    }
+
+//------------------------SQLite3 Related functions----------------------------------------------------------
+    
+    func createDb() {
         
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent("Database.sqlite")
@@ -36,28 +52,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error creating table: \(errmsg)")
         }
-        
-        readValues()
     }
     
-
-    @IBAction func Save(_ sender: Any) {
-
+    func createTable() {
+        
         let name = nameField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         let powerRanking = ratingField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        if(name?.isEmpty)!{
-            nameField.layer.borderColor = UIColor.red.cgColor
-            return
-        }
-        
-        if(powerRanking?.isEmpty)!{
-            ratingField.layer.borderColor = UIColor.red.cgColor
-            return
-        }
+        checkNameField()
+        checkRankingField()
         
         var stmt: OpaquePointer?
-        
         let queryString = "INSERT INTO Anime (name, powerrank) VALUES (?,?)"
         
         if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
@@ -66,7 +70,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-       
+        
         if sqlite3_bind_text(stmt, 1, name, -1, nil) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding name: \(errmsg)")
@@ -84,20 +88,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("failure inserting anime: \(errmsg)")
             return
         }
-        
-        nameField.text=""
-        ratingField.text=""
-        
-        readValues()
-        
-        print("ANime saved successfully")
-        
     }
     
-  
-
-    
     func readValues(){
+        
         animeList.removeAll()
         
         let queryString = "SELECT * FROM Anime"
@@ -120,6 +114,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.tableView.reloadData()
     }
+
+//------------------------Helper-----------------------------------------------------------------------
+
+    func checkNameField() {
+        let name = nameField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if(name?.isEmpty)!{
+            nameField.layer.borderColor = UIColor.red.cgColor
+            return
+        }
+    }
+    
+    func checkRankingField() {
+        let powerRanking = ratingField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if(powerRanking?.isEmpty)!{
+            ratingField.layer.borderColor = UIColor.red.cgColor
+            return
+        }
+    }
+    
+    func clearTextFields() {
+        nameField.text=""
+        ratingField.text=""
+    }
+    
+//------------------------TableView-----------------------------------------------------------------------
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return animeList.count
