@@ -12,6 +12,9 @@
 		35D9FD7A21F18B8B007CB341 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35D9FD7821F18B8B007CB341 /* Main.storyboard */; };
 		35D9FD7C21F18B8E007CB341 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D9FD7B21F18B8E007CB341 /* Assets.xcassets */; };
 		35D9FD7F21F18B8E007CB341 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35D9FD7D21F18B8E007CB341 /* LaunchScreen.storyboard */; };
+		35D9FD8821F197D9007CB341 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D9FD8721F197D9007CB341 /* libsqlite3.tbd */; };
+		35D9FD8A21F197DF007CB341 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D9FD8921F197DF007CB341 /* libsqlite3.0.tbd */; };
+		35D9FD9021F19B62007CB341 /* Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D9FD8F21F19B62007CB341 /* Anime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,10 @@
 		35D9FD7B21F18B8E007CB341 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35D9FD7E21F18B8E007CB341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35D9FD8021F18B8E007CB341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35D9FD8721F197D9007CB341 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		35D9FD8921F197DF007CB341 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		35D9FD8E21F19859007CB341 /* SqliteTutorial-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SqliteTutorial-Bridging-Header.h"; sourceTree = "<group>"; };
+		35D9FD8F21F19B62007CB341 /* Anime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35D9FD8A21F197DF007CB341 /* libsqlite3.0.tbd in Frameworks */,
+				35D9FD8821F197D9007CB341 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +47,10 @@
 		35D9FD6821F18B8B007CB341 = {
 			isa = PBXGroup;
 			children = (
+				35D9FD8E21F19859007CB341 /* SqliteTutorial-Bridging-Header.h */,
 				35D9FD7321F18B8B007CB341 /* SqliteTutorial */,
 				35D9FD7221F18B8B007CB341 /* Products */,
+				35D9FD8621F197D8007CB341 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +67,22 @@
 			children = (
 				35D9FD7421F18B8B007CB341 /* AppDelegate.swift */,
 				35D9FD7621F18B8B007CB341 /* ViewController.swift */,
+				35D9FD8F21F19B62007CB341 /* Anime.swift */,
 				35D9FD7821F18B8B007CB341 /* Main.storyboard */,
 				35D9FD7B21F18B8E007CB341 /* Assets.xcassets */,
 				35D9FD7D21F18B8E007CB341 /* LaunchScreen.storyboard */,
 				35D9FD8021F18B8E007CB341 /* Info.plist */,
 			);
 			path = SqliteTutorial;
+			sourceTree = "<group>";
+		};
+		35D9FD8621F197D8007CB341 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35D9FD8921F197DF007CB341 /* libsqlite3.0.tbd */,
+				35D9FD8721F197D9007CB341 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +117,7 @@
 				TargetAttributes = {
 					35D9FD7021F18B8B007CB341 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -137,6 +159,7 @@
 			files = (
 				35D9FD7721F18B8B007CB341 /* ViewController.swift in Sources */,
 				35D9FD7521F18B8B007CB341 /* AppDelegate.swift in Sources */,
+				35D9FD9021F19B62007CB341 /* Anime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SqliteTutorial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -290,6 +314,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.clarion.SqliteTutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SqliteTutorial-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -299,6 +325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SqliteTutorial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -307,6 +334,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.clarion.SqliteTutorial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SqliteTutorial-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
